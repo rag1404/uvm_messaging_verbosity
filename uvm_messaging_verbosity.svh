@@ -118,13 +118,13 @@ endclass
   endfunction
   
     function void write_comp_a (transaction t);
-      `uvm_info(get_type_name(),$sformatf(" tranaction Received in scoreboard comp_a"),UVM_LOW)
+      `uvm_info(get_type_name(),$sformatf(" transaction Received in scoreboard comp_a"),UVM_LOW)
     t.print();
       
     endfunction
 
     function void write_comp_b (transaction tr);
-      `uvm_info(get_type_name(),$sformatf(" tranaction Received in scoreboard comp_b"),UVM_LOW)
+      `uvm_info(get_type_name(),$sformatf(" transaction Received in scoreboard comp_b"),UVM_LOW)
     tr.print();
       
     endfunction
@@ -132,7 +132,7 @@ endclass
  
 endclass
 
-  // Env doesn't have any messages 
+  // Env has 1 UVM_DEBUG message 
 
 class my_env extends uvm_env;
   `uvm_component_utils(my_env)
@@ -154,12 +154,12 @@ class my_env extends uvm_env;
   function void connect_phase(uvm_phase phase);
     test_a.broadcast_port.connect(test_c.comp_a_export);
     test_b.aport_send.connect(test_c.comp_b_export);
-    
+    `uvm_info ("my_env", "Demonstrating UVM_DEBUG message from my_env",UVM_DEBUG);
   endfunction
   
 endclass
 
-  // Test has 1 uvm_high and 1 uvm_low messages 
+  // Test has 1 uvm_full and 1 uvm_low messages 
   
 class base_test extends uvm_test;
 
@@ -188,9 +188,9 @@ class base_test extends uvm_test;
   
   virtual task run_phase(uvm_phase phase);
     phase.raise_objection(this);
-    `uvm_info ("Inside_test","Example to demonstrate UVM_HIGH",UVM_HIGH);
+    `uvm_info ("Inside_test","Example to demonstrate UVM_HIGH",UVM_FULL);
     #500;
-    `uvm_info ("Inside_test","Example to demonstrate UVM_LOW ",UVM_LOW);
+    `uvm_info ("Inside_test","Example to demonstrate UVM_LOW from base_test",UVM_LOW);
     phase.drop_objection(this);
   endtask
   
