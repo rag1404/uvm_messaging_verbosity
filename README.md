@@ -13,7 +13,7 @@ Lets take a look at the uvm_verbosity definitions
 Here is the Syntax for it.
 From UVM 1.2
 
-// +uvm_set_verbosity=<comp>,<id>,<verbosity>,<phase|time>,<offset>
+// +uvm_set_verbosity=<comp\>,<id\>,<verbosity\>,<phase|time\>,<offset\>
 
 // +uvm_set_verbosity=uvm_test_top.env0.agent1.*,_ALL_,UVM_FULL,time,800.
 
