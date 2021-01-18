@@ -20,3 +20,17 @@ From UVM 1.2
 // Let's rerun the above code with the commmand line option +uvm_set_verbosity=uvm_test_top.env,_ALL_,UVM_DEBUG,connect
 
 // Basically it tells to display all the id's inside UVM_ENV with verbosity UVM_DEBUG in connect phase
+
+# Example 4
+1) If we want to turn off Message from specific components, we can use uvm_set_action.
+ 
+ //Here is the syntax
+ 
+ // +uvm_set_action=<comp\>,<id\>,<severity\>,<action\>
+ 
+// In this case, if we want to turn off Message from test_b component
+
+// +uvm_set_action=uvm_test_top.env.test_b,\_ALL_\,UVM_INFO,UVM_NO_ACTION
+
+// Turn off all the UVM_INFO Messages from test_b component
+
